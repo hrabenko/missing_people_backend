@@ -16,7 +16,7 @@ export const postCreateValidation = [
     body('fullName', "Довжина імені повинна бути мінімум 2 символи").isLength({ min: 2 }),
     body('birthDate', "Некоректно введенна дата").isDate(),
     body('city', "Довжина міста повинна бути мінімум 2 символи").isLength({ min: 2 }).isString(),
-    body('appearanceDescription', "Опис зовнішності повиннен бути мінімум 8 символив").isLength({ min: 8 }).isString(),
+    body('appearanceDescription', "Опис зовнішності повиннен бути мінімум 8 символів").isLength({ min: 8 }).isString(),
     body('phoneNumber', "Некоректно введений номер телефону").isMobilePhone(),
     body('photoUrl', "Некоректне посилання на фото").optional().isURL(),
 ];
