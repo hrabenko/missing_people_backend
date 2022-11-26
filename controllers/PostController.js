@@ -1,6 +1,50 @@
 import PostModel from '../models/Post.js'
 import { validationResult } from 'express-validator';
 
+export const getAll = async (req, res) => {
+    try {
+        const posts = await PostModel.find().populate('user').exec();
+
+        res.json(posts);
+    } catch (error) {
+        console.log(err);
+        res.status(500).json({
+            message: 'Не владося отримати публікації',
+        });
+    }
+}
+export const getOne = async (req, res) => {
+    try {
+        const postId = req.params.id;
+        
+        PostModel.findOne({
+            _id: postId
+        }, (err, doc) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({
+                message: 'Не владося отримати публікацію',
+            });
+            }
+
+            if (!doc) {
+                return res.status(404).json({
+                    message: "Публікацію не знайдено",
+                })
+            }
+
+            res.json(doc);
+        }
+        )
+
+    } catch (error) {
+        console.log(err);
+        res.status(500).json({
+            message: 'Не владося отримати публікацію',
+        });
+    }
+}
+
 export const create = async (req, res) => {
     try {
         const errors = validationResult(req);
