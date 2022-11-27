@@ -3,8 +3,7 @@ import multer from 'multer';
 import mongoose from 'mongoose';
 import { registerValidation, loginValidation, postCreateValidation } from './validation.js'
 import checkAuth from "./utils/checkAuth.js"
-import * as UserController from "./controllers/UserController.js"
-import * as PostController from "./controllers/PostController.js"
+import { UserController, PostController } from "./controllers/index.js"
 
 mongoose
     .connect('mongodb+srv://admin:wwwwww@cluster0.ljbge3n.mongodb.net/blog?retryWrites=true&w=majority')
