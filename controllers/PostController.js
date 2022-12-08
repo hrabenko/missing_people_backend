@@ -89,7 +89,7 @@ export const create = async (req, res) => {
         const doc = new PostModel({
             fullName: req.body.fullName,
             birthDate: req.body.birthDate,
-            city: req.body.city,
+            cities: req.body.cities,
             appearanceDescription: req.body.appearanceDescription,
             phoneNumber: req.body.phoneNumber,
             photoUrl: req.body.photoUrl,
@@ -116,7 +116,7 @@ export const update = async (req, res) => {
         }, {
             fullName: req.body.fullName,
             birthDate: req.body.birthDate,
-            city: req.body.city,
+            cities: req.body.cities,
             appearanceDescription: req.body.appearanceDescription,
             phoneNumber: req.body.phoneNumber,
             photoUrl: req.body.photoUrl,

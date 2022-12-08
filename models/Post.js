@@ -9,9 +9,10 @@ const PostSchema = new mongoose.Schema({
         type: String, 
         required: true,
     },
-    city: {
-        type: String, 
+    cities: {
+        type: Array, 
         required: true,
+        default: []
     },
     appearanceDescription: {
         type: String, 
