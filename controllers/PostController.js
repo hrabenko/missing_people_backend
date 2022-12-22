@@ -29,6 +29,22 @@ export const getAll = async (req, res) => {
     }
 }
 
+
+export const getPostsByTag = async (req, res) => {
+    try {
+        const tag = req.params.id;
+        const posts = await PostModel.find({cities: tag}).populate('user').exec();
+
+        res.json(posts);
+    } catch (error) {
+        console.log(err);
+        res.status(500).json({
+            message: 'Не владося отримати публікації',
+        });
+    }
+}
+
+
 export const getOne = async (req, res) => {
     try {
         const postId = req.params.id;
@@ -39,8 +55,8 @@ export const getOne = async (req, res) => {
             if (err) {
                 console.log(err);
                 return res.status(500).json({
-                message: 'Не владося отримати публікацію',
-            });
+                    message: 'Не владося отримати публікацію',
+                });
             }
 
             if (!doc) {
@@ -51,7 +67,7 @@ export const getOne = async (req, res) => {
 
             res.json(doc);
         }
-        )
+        ).populate('user');
 
     } catch (error) {
         console.log(err);
@@ -104,7 +120,7 @@ export const create = async (req, res) => {
         const doc = new PostModel({
             fullName: req.body.fullName,
             birthDate: req.body.birthDate,
-            cities: req.body.cities,
+            cities: req.body.cities.split(', '),
             appearanceDescription: req.body.appearanceDescription,
             phoneNumber: req.body.phoneNumber,
             photoUrl: req.body.photoUrl,
@@ -131,7 +147,7 @@ export const update = async (req, res) => {
         }, {
             fullName: req.body.fullName,
             birthDate: req.body.birthDate,
-            cities: req.body.cities,
+            cities: req.body.cities.split(', '),
             appearanceDescription: req.body.appearanceDescription,
             phoneNumber: req.body.phoneNumber,
             photoUrl: req.body.photoUrl,
