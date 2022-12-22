@@ -7,7 +7,7 @@ import checkAuth from "./utils/checkAuth.js"
 import { UserController, PostController } from "./controllers/index.js"
 
 mongoose
-    .connect('mongodb+srv://admin:wwwwww@cluster0.ljbge3n.mongodb.net/blog?retryWrites=true&w=majority')
+    .connect(process.env.MONGODB_URL)
     .then(() => console.log('DB ok'))
     .catch((err) => console.log('DB error', err));
 
@@ -49,7 +49,7 @@ app.patch("/posts/:id", checkAuth, postCreateValidation, PostController.update);
 
 
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
     if (err) {
         return console.log(err);
     }
