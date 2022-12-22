@@ -3,9 +3,9 @@ import { validationResult } from 'express-validator';
 
 export const getLastTags = async (req, res) => {
     try {
-        const posts = await PostModel.find().limit(5).exec();
+        const posts = await PostModel.find().exec();
 
-        const tags = posts.map(obj => obj.cities).flat().slice(0, 5);
+        const tags = [...new Set(posts.map(obj => obj.cities).flat())];
 
         res.json(tags);
     } catch (err) {
