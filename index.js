@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 import { registerValidation, loginValidation, postCreateValidation } from './validation.js'
 import checkAuth from "./utils/checkAuth.js"
 import { UserController, PostController } from "./controllers/index.js"
+import * as dotenv from 'dotenv' 
+dotenv.config()
 
 mongoose
     .connect(process.env.MONGODB_URL)
